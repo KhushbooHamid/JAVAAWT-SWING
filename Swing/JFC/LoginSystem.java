@@ -1,33 +1,28 @@
 import javax.swing.*;
 
 public class LoginSystem {
-    public static void main(String []args)
-    {
+    public static void main(String[] args) {
         JFrame f = new JFrame();
 
-        JLabel l = new JLabel("username");
-        l.setBounds(40,30,100,80);
-
-        JLabel l1 = new JLabel("password");
-        l1.setBounds(60,60,120,100);
-
-        JTextField t1=new JTextField();
-        t1.setBounds(120,100,140,40);
-
-        JTextField t2=new JTextField();
-        t2.setBounds(120,100,100,80);
-
-        f.add(l);
-        f.add(l1);
-
-        f.add(t1);
-        f.add(t2);
-
-        f.setSize(600,600);
+        f.setSize(600, 600);
         f.setVisible(true);
         f.setLayout(null);
 
+        JLabel l = new JLabel("username");
+        l.setBounds(40, 30, 100, 30);
+        f.add(l);
+
+        JLabel l1 = new JLabel("password");
+        l1.setBounds(40, 80, 100, 40);
+        f.add(l1);
+
+        JTextField t1 = new JTextField();
+        t1.setBounds(150, 30, 140, 40);
+        f.add(t1);
+
+        JTextField t2 = new JTextField();
+        t2.setBounds(150, 80, 140, 40);
+        f.add(t2);
 
     }
-  
 }
