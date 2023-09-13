@@ -1,7 +1,9 @@
 import javax.swing.*;
 
-public class LoginSystem {
-    public static void main(String[] args) {
+public class LoginSystem
+{
+    public static void main(String[] args)
+    {
         JFrame f = new JFrame();
 
         f.setSize(600, 600);
@@ -13,7 +15,7 @@ public class LoginSystem {
         f.add(l);
 
         JLabel l1 = new JLabel("password");
-        l1.setBounds(40, 80, 100, 40);
+        l1.setBounds(40, 80, 100, 30);
         f.add(l1);
 
         JTextField t1 = new JTextField();
@@ -24,5 +26,8 @@ public class LoginSystem {
         t2.setBounds(150, 80, 140, 40);
         f.add(t2);
 
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // added this so closing the application would also close the program in terminal
+
     }
+
 }
