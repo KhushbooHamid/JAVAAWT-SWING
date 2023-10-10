@@ -21,14 +21,14 @@ class thread2 implements Runnable {
 public class RunnableThread {
 
     public static void main(String[] args) {
-        Runnable t1 = new thread1();
-        Runnable t2 = new thread2();
+        Runnable bullet1 = new thread1();
+        Runnable bullet2 = new thread2();
 
-        Thread newt1 = new Thread(t1);
-        Thread newt2 = new Thread(t2);
+        Thread gun1 = new Thread(bullet1);
+        Thread gun2 = new Thread(bullet2);
 
-        newt1.start();
-        newt2.start();
+        gun1.start();
+        gun2.start();
 
     }
 
