@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Fields</title>
+    <style>
+        /* Your CSS styles remain the same */
+    </style>
+</head>
+<body>
+    <select id="categorySelect" onchange="addField()">
+        <option value="Select" selected>Select</option>
+        <option value="Gold">Gold</option>
+        <option value="Silver">Silver</option>
+        <option value="Savings">Savings</option>
+        <option value="Custom">Custom</option>
+    </select>
+    <div id="fieldsContainer"></div>
+    <div id="totalSum">The total sum is: 0</div>
+
+    <script>
+        let total = 0;
+
+        function addField() {
+            const category = document.getElementById('categorySelect').value;
+            if (category === "Select") {
+                alert("Please select a valid category.");
+                return;
+            }
+
+            const container = document.getElementById('fieldsContainer');
+            const field = document.createElement('div');
+            field.className = 'field';
+
+            const label = document.createElement('label');
+            if (category === 'Custom') {
+                const customName = prompt("Enter the name for the custom field:");
+                if (!customName || customName.trim() === "") {
+                    alert("You must provide a name for the custom field.");
+                    return; // Do not proceed with field creation
+                }
+                label.innerText = customName + ': ';
+            } else {
+                label.innerText = category + ': ';
+            }
+            field.appendChild(label);
+
+            if (category === 'Gold') {
+                addGoldFeatures(field);
+            } else if (category === 'Silver') {
+                addSilverFeatures(field);
+            } else if (category === 'Savings') {
+                addSavingsFeatures(field);
+            } else if (category === 'Custom') {
+                addCustomFeatures(field);
+            }
+
+            const deleteButton = document.createElement('button');
+            deleteButton.innerText = 'Delete';
+            deleteButton.onclick = function() {
+                container.removeChild(field);
+                updateTotalSum();
+            };
+            field.appendChild(deleteButton);
+
+            container.appendChild(field);
+        }
+
+        function addGoldFeatures(field) {
+            const countrySelect = createCountrySelect(field);
+
+            function createWeightField() {
+                const weightInput = createWeightInput(field, 'Weight of Gold');
+                const output = createOutput(field);
+                weightInput.addEventListener('input', function() { calculateGoldValue(weightInput, puritySelect, output); });
+            }
+
+            function createPurityField() {
+                const puritySelect = createPuritySelect(field);
+                const output = createOutput(field);
+                puritySelect.addEventListener('change', function() { calculateGoldValue(weightInput, puritySelect, output); });
+            }
+
+            createWeightField.style.display = 'none';
+            createPurityField.style.display = 'none';
+
+            countrySelect.addEventListener('change', function() {
+                if (countrySelect.value === 'India') {
+                    addCitySelect(field);
+                } else {
+                    removeCitySelect(field);
+                }
+
+                if (countrySelect.value !== 'Select') {
+                    createWeightField.style.display = 'block';
+                    createPurityField.style.display = 'block';
+                } else {
+                    createWeightField.style.display = 'none';
+                    createPurityField.style.display = 'none';
+                }
+            });
+        }
+
+        // ... (other functions and code remain the same) ...
+
+    </script>
+</body>
+</html>
